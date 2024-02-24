@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float movespeed;
     public bool isMoving;
+    public bool isAlive=true;
     public float dmg_max = 20;
     public float dmg_min = 10;
+    public float maxHp = 100;
+    public float hp = 100;
     public Vector2 input;
     public float volume = 0;
     [SerializeField] private AudioClip attackClip;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
+    public GameObject healthbar;
+    private Slider slider;
+    public LogicManager logic;
+
 
     private Animator animator;
     float moveX;
@@ -23,48 +31,67 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         LastmoveVector = new Vector2(1,0f);
+
+    }
+    private void Start()
+    {
+        healthbar = Instantiate(healthbar, transform.position, transform.rotation);
+        healthbar.transform.parent = transform;
+        slider = healthbar.GetComponent<Slider>();
+        slider.value = 0f;
+
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
+        logic.gameOverScreen.SetActive(false);
     }
 
     private void Update()
     {
-        if (!isMoving)
+        healthbar.transform.position = transform.position+new Vector3(0,1,0);
+        SetHealthbar(slider);
+        if (isAlive)
         {
-            moveX = Input.GetAxisRaw("Horizontal");
-            moveY = Input.GetAxisRaw("Vertical");
+            if (!isMoving)
+            {
+                moveX = Input.GetAxisRaw("Horizontal");
+                moveY = Input.GetAxisRaw("Vertical");
 
 
-            input.x = moveX;
-            input.y = moveY;
-            if (input.x != 0)
-            {
-                LastmoveVector = new Vector2(input.x,0f);
-                input.y = 0;
-            }
-            if (input.y != 0)
-            {
-                LastmoveVector = new Vector2(0f,input.y);
-                input.x = 0;
-            }
-            if (input != Vector2.zero)
-            {
-                animator.SetFloat("moveX", input.x);
-                animator.SetFloat("moveY", input.y);
-                var targetPos=transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
+                input.x = moveX;
+                input.y = moveY;
+                if (input.x != 0)
+                {
+                    LastmoveVector = new Vector2(input.x, 0f);
+                    input.y = 0;
+                }
+                if (input.y != 0)
+                {
+                    LastmoveVector = new Vector2(0f, input.y);
+                    input.x = 0;
+                }
+                if (input != Vector2.zero)
+                {
+                    animator.SetFloat("moveX", input.x);
+                    animator.SetFloat("moveY", input.y);
+                    var targetPos = transform.position;
+                    targetPos.x += input.x;
+                    targetPos.y += input.y;
 
-  
-                if(isWalkable(targetPos))
-                    StartCoroutine(Move(targetPos));
+
+                    if (isWalkable(targetPos))
+                        StartCoroutine(Move(targetPos));
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            SoundFXManager.instance.PlaySoundFXClip(attackClip, transform, volume);
-            StartCoroutine(AttackAnimation());
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                SoundFXManager.instance.PlaySoundFXClip(attackClip, transform, volume);
+                StartCoroutine(AttackAnimation());
+            }
         }
     }
-
+    public void SetHealthbar(Slider slider)
+    {
+        slider.value = (maxHp - hp) / maxHp;
+    }
     IEnumerator AttackAnimation()
     {
         animator.SetBool("isAttack", true);
@@ -113,5 +140,20 @@ public class PlayerController : MonoBehaviour
         {
             
         }
+    }
+    public void IsAttacked(float damage)
+    {
+        hp-= damage;
+        if (hp<=0)
+        {
+            Dead();
+        }
+
+    }
+    public void Dead()
+    {
+        isAlive = false;
+        Debug.Log("die");
+        logic.GameOver();
     }
 }

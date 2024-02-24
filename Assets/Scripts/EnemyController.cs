@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour, Enemy
     public float hp = 1;
     public float atk = 1;
     public LogicManager logic;
+    public PlayerController player;
     private float maxHp = 1;
 
     private Animator animator;
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour, Enemy
     private void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
     public void Damage(float dmg)
     {
@@ -70,6 +72,7 @@ public class EnemyController : MonoBehaviour, Enemy
     {
         animator.SetBool("isAttacking", true);
         Debug.Log("attack"+atk);
+        player.IsAttacked(atk);
 
         // Wait for a short duration (adjust as needed)
         yield return new WaitForSeconds(0.1f);

@@ -53,3 +53,6 @@ TagManager:
   - name: Player
     uniqueID: 3399294887
     locked: 0
+  - name: HealthBar
+    uniqueID: 1677123531
+    locked: 0
