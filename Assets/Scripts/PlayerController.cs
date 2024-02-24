@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
     public float dmg_max = 20;
     public float dmg_min = 10;
     private Vector2 input;
+    public Vector2 direction;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
 
     private Animator animator;
+    float moveX;
+    float moveY;
 
     private void Awake()
     {
@@ -23,10 +26,13 @@ public class PlayerController : MonoBehaviour
     {
         if (!isMoving)
         {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-            
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveY = Input.GetAxisRaw("Vertical");
 
+            direction = new Vector2(moveX,moveY).normalized;
+
+            input.x = moveX;
+            input.y = moveY;
             if (input.x != 0)
             {
                 input.y = 0;
