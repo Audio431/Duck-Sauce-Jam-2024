@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1490584667
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a56af3e68d57f644a0ffa2b5a8f0cee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -197,8 +197,10 @@ MonoBehaviour:
   moveSpeed: 75
   moverate: 2
   health: 170
+  atk: 40
   controller: {fileID: 0}
   healthbar: {fileID: 5271658860410331090, guid: aab4959213c3c46868aa00bff9d3c728, type: 3}
+  player: {fileID: 0}
 --- !u!114 &2468180006560416217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,4 +214,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  atk: 1
   logic: {fileID: 0}
