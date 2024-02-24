@@ -47,6 +47,9 @@ public class OrcMove : MonoBehaviour
                 {
                     transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
                 }
+                rand = Random.value;
+                if (rand < 0.25)
+                    controller.Attack();
             }
             else
             {

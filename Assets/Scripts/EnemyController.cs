@@ -6,6 +6,13 @@ public class EnemyController : MonoBehaviour, Enemy
 {
     public float hp = 1;
     public LogicManager logic;
+
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
@@ -31,5 +38,20 @@ public class EnemyController : MonoBehaviour, Enemy
     {
         hp=health;
         Debug.Log($"{hp}");
+    }
+
+    public void Attack()
+    {
+        StartCoroutine(AttackAnimation());
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        animator.SetBool("isAttacking", true);
+
+        // Wait for a short duration (adjust as needed)
+        yield return new WaitForSeconds(0.1f);
+
+        animator.SetBool("isAttacking", false);
     }
 }
