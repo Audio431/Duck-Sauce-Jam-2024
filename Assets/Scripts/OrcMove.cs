@@ -27,27 +27,32 @@ public class OrcMove : MonoBehaviour
         }
         else
         {
+            if(Mathf.Abs(transform.position.x - player.transform.position.x) <= 1 || Mathf.Abs(transform.position.y - player.transform.position.y) <= 1)
+            {
+                var rand = Random.value;
 
-            //var rand = Random.value;
-
-            //if (rand < 0.25)
-            //{
-            //    transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
-            //}
-            //else if (rand < 0.5)
-            //{
-            //    transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
-            //}
-            //else if (rand < 0.75)
-            //{
-            //    transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
-            //}
-            //else
-            //{
-            //    transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
-
-            //}
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+                if (rand < 0.25)
+                {
+                    transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
+                }
+                else if (rand < 0.5)
+                {
+                    transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
+                }
+                else if (rand < 0.75)
+                {
+                    transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
+                }
+                else
+                {
+                    transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
+                }
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            }
+            
             timer = 0;
         }
 

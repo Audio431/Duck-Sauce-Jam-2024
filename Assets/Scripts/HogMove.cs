@@ -5,13 +5,15 @@ using UnityEngine;
 public class HogMove : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float moveSpeed = 75;
+    public float moveSpeed = 3;
     public float moverate = 2;
     private float timer = 0;
     public float health = 170;
     public EnemyController controller;
+    public GameObject player;
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         controller = GetComponent<EnemyController>();
         controller.SetHp(health);
     }
@@ -25,25 +27,32 @@ public class HogMove : MonoBehaviour
         }
         else
         {
-            var rand = Random.value;
+            if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 1 || Mathf.Abs(transform.position.y - player.transform.position.y) <= 1)
+            {
+                var rand = Random.value;
 
-            if (rand < 0.25)
-            {
-                transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
-            }
-            else if (rand < 0.5)
-            {
-                transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
-            }
-            else if (rand < 0.75)
-            {
-                transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
+                if (rand < 0.25)
+                {
+                    transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
+                }
+                else if (rand < 0.5)
+                {
+                    transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
+                }
+                else if (rand < 0.75)
+                {
+                    transform.position = transform.position + (Vector3.up * moveSpeed) * Time.deltaTime;
+                }
+                else
+                {
+                    transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
+                }
             }
             else
             {
-                transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
-
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
             }
+
             timer = 0;
         }
 
