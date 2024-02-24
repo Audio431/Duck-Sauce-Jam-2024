@@ -10,6 +10,6 @@ public class FishController : WeaponController
         GameObject spawnedFish = Instantiate(prefab);
         spawnedFish.transform.position = transform.position;
         spawnedFish.transform.position = spawnedFish.transform.position + new Vector3(0.5f,0.5f);
-        spawnedFish.GetComponent<FishBehaviour>().DirectChecker(pc.direction);
+        spawnedFish.GetComponent<FishBehaviour>().DirectChecker(pc.LastmoveVector);
     }
 }
