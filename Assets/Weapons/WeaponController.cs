@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
+    public bool enable;
     public PlayerController pc;
     public GameObject prefab;
     public float damage;
@@ -15,6 +16,7 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        enable = false;
         pc = FindObjectOfType<PlayerController>();
         currentCooldown = cooldownDuration;
     }
@@ -23,7 +25,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void Update()
     {
         currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0f){
+        if (currentCooldown <= 0f && enable == true){
             Attack();
         }
     }
