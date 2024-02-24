@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
 
     public void Generate(GameObject enemy)
     {
-        GameObject e = Instantiate(enemy, (transform.position * (Random.value * 10)), transform.rotation);
+        GameObject e = Instantiate(enemy, (transform.position + (new Vector3(1,1,0) *Random.value * 10)), transform.rotation);
         enemyList.Add(e);
         timer = 0;
     }
