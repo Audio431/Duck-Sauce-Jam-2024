@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrcMove : MonoBehaviour
 {
@@ -10,17 +11,27 @@ public class OrcMove : MonoBehaviour
     private float timer = 0;
     public float health = 200;
     public EnemyController controller;
-    public GameObject player;
+    private GameObject player;
+    public GameObject healthbar;
+    private Slider slider;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         controller = GetComponent<EnemyController>();
         controller.SetHp(health);
+
+        healthbar = Instantiate(healthbar, transform.position + Vector3.up * .5f, transform.rotation);
+        healthbar.transform.parent = transform;
+        slider = healthbar.GetComponent<Slider>();
+        slider.value = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthbar.transform.position = transform.position + Vector3.up * .5f;
+        GetComponent<EnemyController>().SetHealthbar(slider);
+
         if (timer < moverate)
         {
             timer = timer + Time.deltaTime;

@@ -198,6 +198,7 @@ MonoBehaviour:
   moverate: 0.2
   health: 100
   controller: {fileID: 0}
+  healthbar: {fileID: 5271658860410331090, guid: aab4959213c3c46868aa00bff9d3c728, type: 3}
 --- !u!114 &-5358758751970040426
 MonoBehaviour:
   m_ObjectHideFlags: 0
