@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Logic
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - SolidObjects
+  - Interactable
   - 
   - 
   - 
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3149338467
+    locked: 0
+  - name: Foreground
+    uniqueID: 2804382629
+    locked: 0
+  - name: Player
+    uniqueID: 3399294887
     locked: 0
