@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject enemy1;
-    public GameObject enemy2;
-    public GameObject enemy3;
     public float spawnRate = 2f;
     public float timer = 0;
     public int maxEnemy = 10;
     private List<GameObject> enemyList = new List<GameObject>();
+    public GameObject[] enemyArray;
 
 
     // Start is called before the first frame update
@@ -32,16 +30,15 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            int rand = Random.Range(1, 4);
-            if (rand==1){
-                Generate(enemy1);
-            }
-            else if (rand == 2)
-            {
-                Generate(enemy2);
-            }
-            else { 
-                Generate(enemy3);
+            foreach(GameObject obj in enemyArray) {
+            var i=Random.value;
+                if (i > 0.5)
+                {
+                    Generate(obj);
+                }
+                {
+                    
+                }
             }
             
         }
