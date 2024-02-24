@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public float dmg_max = 20;
     public float dmg_min = 10;
     public Vector2 input;
+    public float volume = 0;
+    [SerializeField] private AudioClip attackClip;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
 
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
+            SoundFXManager.instance.PlaySoundFXClip(attackClip, transform, volume);
             StartCoroutine(AttackAnimation());
         }
     }

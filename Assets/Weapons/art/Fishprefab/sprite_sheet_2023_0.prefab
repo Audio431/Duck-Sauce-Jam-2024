@@ -98,3 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfterSeconds: 10
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  dmg: 100
