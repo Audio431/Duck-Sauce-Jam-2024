@@ -51,8 +51,21 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Interact();
+            StartCoroutine(AttackAnimation());
         }
+    }
+
+    IEnumerator AttackAnimation()
+    {
+        animator.SetBool("isAttack", true);
+
+        // Wait for a short duration (adjust as needed)
+        yield return new WaitForSeconds(0.1f);
+
+        // Call your interaction function here
+        Interact();
+
+        animator.SetBool("isAttack", false);
     }
 
     IEnumerator Move(Vector3 targetPos)
