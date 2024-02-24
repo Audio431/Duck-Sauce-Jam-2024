@@ -8,38 +8,45 @@ public class PlayerController : MonoBehaviour
     public bool isMoving;
     public float dmg_max = 20;
     public float dmg_min = 10;
-    private Vector2 input;
+    public Vector2 input;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
 
     private Animator animator;
+    float moveX;
+    float moveY;
 
+    public Vector2 LastmoveVector; 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        LastmoveVector = new Vector2(1,0f);
     }
 
     private void Update()
     {
         if (!isMoving)
         {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-            
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveY = Input.GetAxisRaw("Vertical");
 
+
+            input.x = moveX;
+            input.y = moveY;
             if (input.x != 0)
             {
+                LastmoveVector = new Vector2(input.x,0f);
                 input.y = 0;
             }
             if (input.y != 0)
             {
+                LastmoveVector = new Vector2(0f,input.y);
                 input.x = 0;
             }
             if (input != Vector2.zero)
             {
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
-
                 var targetPos=transform.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
