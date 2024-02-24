@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DevilMove : MonoBehaviour
 {
@@ -12,17 +13,28 @@ public class DevilMove : MonoBehaviour
     public float atk = 30;
     public EnemyController controller;
     public GameObject player;
+    public float distance;
+    public GameObject healthbar;
+    private Slider slider;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         controller = GetComponent<EnemyController>();
         controller.SetHp(health);
+
+        healthbar = Instantiate(healthbar, transform.position + Vector3.up, transform.rotation);
+        healthbar.transform.parent = transform;
+        slider = healthbar.GetComponent<Slider>();
+        slider.value = 0f;
         controller.SetAtk(atk);
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthbar.transform.position = transform.position + Vector3.up;
+        GetComponent<EnemyController>().SetHealthbar(slider);
+
         if (timer < moverate)
         {
             timer = timer + Time.deltaTime;

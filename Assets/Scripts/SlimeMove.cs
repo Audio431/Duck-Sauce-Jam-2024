@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlimeMove : MonoBehaviour
 {
@@ -11,18 +12,32 @@ public class SlimeMove : MonoBehaviour
     public float health = 100;
     public float atk = 10;
     public EnemyController controller;
+    public GameObject healthbar;
+    private Slider slider;
     public GameObject player;
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         controller = GetComponent<EnemyController>();
         controller.SetHp(health);
+        Debug.Log("HELlo");
+
+        
+        healthbar = Instantiate(healthbar, transform.position, transform.rotation);
+        healthbar.transform.parent = transform;
+        slider = healthbar.GetComponent<Slider>();
+        slider.value = 0f;
+
+        Debug.Log(slider.value);
         controller.SetAtk(atk);
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthbar.transform.position = transform.position;
+        GetComponent<EnemyController>().SetHealthbar(slider);
+
         if (timer < moverate)
         {
             timer = timer + Time.deltaTime;

@@ -199,6 +199,7 @@ MonoBehaviour:
   health: 100
   atk: 10
   controller: {fileID: 0}
+  healthbar: {fileID: 5271658860410331090, guid: aab4959213c3c46868aa00bff9d3c728, type: 3}
   player: {fileID: 0}
 --- !u!114 &-5358758751970040426
 MonoBehaviour:
