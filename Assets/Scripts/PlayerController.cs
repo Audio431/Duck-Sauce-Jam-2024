@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public bool isMoving;
     public float dmg_max = 20;
     public float dmg_min = 10;
-    private Vector2 input;
+    public Vector2 input;
     public LayerMask solidObjectLayer;
     public LayerMask interactableLayer;
 
