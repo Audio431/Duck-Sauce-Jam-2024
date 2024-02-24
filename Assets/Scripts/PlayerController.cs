@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        animator.SetFloat("moveX", -1f);
+
         healthbar = Instantiate(healthbar, transform.position, transform.rotation);
         healthbar.transform.parent = transform;
         slider = healthbar.GetComponent<Slider>();
