@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
-
                 var targetPos=transform.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;

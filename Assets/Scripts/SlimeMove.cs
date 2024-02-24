@@ -9,6 +9,7 @@ public class SlimeMove : MonoBehaviour
     public float moverate = 2;
     private float timer = 0;
     public float health = 100;
+    public float atk = 10;
     public EnemyController controller;
     public GameObject player;
     void Start()
@@ -16,6 +17,7 @@ public class SlimeMove : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         controller = GetComponent<EnemyController>();
         controller.SetHp(health);
+        controller.SetAtk(atk);
     }
 
     // Update is called once per frame
@@ -47,10 +49,14 @@ public class SlimeMove : MonoBehaviour
                 {
                     transform.position = transform.position + (Vector3.down * moveSpeed) * Time.deltaTime;
                 }
-                rand = Random.value;
-                if (rand < 0.25)
-                    controller.Attack();
+                if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 1 && Mathf.Abs(transform.position.y - player.transform.position.y) <= 1)
+                {
+                    rand = Random.value;
+                    if (rand < 0.5)
+                        controller.Attack();
+                }
             }
+                
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
