@@ -21,6 +21,6 @@ public class LogicManager : MonoBehaviour
     }
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 }

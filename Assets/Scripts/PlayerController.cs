@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         slider.value = 0f;
 
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicManager>();
-        logic.gameOverScreen.SetActive(false);
     }
 
     private void Update()

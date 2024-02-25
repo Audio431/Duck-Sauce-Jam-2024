@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-    public void PlayGame()
+    public void Retry()
     {
         // Load the next scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Gameplay");
     }
 
-    public void QuitGame()
+    public void MainMenu()
     {
         // Quit the game
-        Application.Quit();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
