@@ -6,7 +6,7 @@ public class FishBehaviour : ProjectileWeaponBehavoir
 {
     public LayerMask interactableLayer;
     FishController kc;
-    int damage = 100;
+    //int damage = 100;
     protected override void Start()
     {       
         base.Start();
@@ -21,7 +21,7 @@ public class FishBehaviour : ProjectileWeaponBehavoir
         if (collider != null)
         {
             //Debug.Log("ther is a npc here");
-            collider.GetComponent<Enemy>()?.Damage(damage);
+            collider.GetComponent<Enemy>()?.Damage(kc.damage);
             Destroy(gameObject);
 
         }

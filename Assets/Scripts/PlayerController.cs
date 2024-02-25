@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     private float normalSpeed;
     public bool isMoving;
     public bool isAlive=true;
-    public float dmg_max = 20;
-    public float dmg_min = 10;
+    public float dmg_max = 80;
+    public float dmg_min = 50;
     public float maxHp = 100;
     public float hp = 100;
     public Vector2 input;
@@ -138,8 +138,18 @@ public class PlayerController : MonoBehaviour
         // Call your interaction function here
         dashCounter = dashCooldown;
         movespeed = dashSpeed;
+        if (!isMoving)
+        {
+            var x = animator.GetFloat("moveX");
+            var y = animator.GetFloat("moveY");
+            Debug.Log($"{x}:{y}");
+            var targetPos = transform.position;
+            targetPos.x += x * 5;
+            targetPos.y += y * 5;
+            StartCoroutine(Move(targetPos));
+        }
 
-        
+
     }
 
     IEnumerator Move(Vector3 targetPos)

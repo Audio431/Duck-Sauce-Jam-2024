@@ -269,7 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ba363aa74184616bf2e9f54ede6c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 593800384d2214ab083b0d7fa9d8fe45, type: 2}
+  prefab: {fileID: 5315207414609481368, guid: a23b7cbe2b9ba4587818c40a5a3881db, type: 3}
+  damage: 50
+  speed: 5
+  cooldownDuration: 3
+  updraded: 0
+  pierce: 0
+  enable: 0
+  logic: {fileID: 0}
 --- !u!1 &372140127
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,8 +449,8 @@ MonoBehaviour:
   movespeed: 5
   isMoving: 0
   isAlive: 1
-  dmg_max: 20
-  dmg_min: 10
+  dmg_max: 80
+  dmg_min: 50
   maxHp: 100
   hp: 100
   input: {x: 0, y: 0}
@@ -652,8 +659,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -750, y: 250}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchoredPosition: {x: -850, y: 350}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1060285624
 MonoBehaviour:
@@ -677,18 +684,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 220
+    m_FontSize: 50
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 'Kills: 0'
 --- !u!222 &1060285625
 CanvasRenderer:
   m_ObjectHideFlags: 0

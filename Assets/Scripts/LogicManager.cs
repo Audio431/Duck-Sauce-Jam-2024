@@ -13,7 +13,7 @@ public class LogicManager : MonoBehaviour
     public void AddScore()
     {
         score++;
-        ScoreText.text = score.ToString();
+        ScoreText.text = "Kills: "+score.ToString();
     }
     public void RetryGame()
     {
