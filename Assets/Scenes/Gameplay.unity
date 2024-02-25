@@ -276,8 +276,7 @@ MonoBehaviour:
   updraded: 0
   pierce: 0
   enable: 0
-  logic: {fileID: 1114900285}
-  attackClip: {fileID: 8300000, guid: 42a21691a759286488b5bd54d8b3a365, type: 3}
+  logic: {fileID: 0}
 --- !u!1 &311052773
 GameObject:
   m_ObjectHideFlags: 0
