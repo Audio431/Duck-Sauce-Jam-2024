@@ -96,8 +96,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift) && dashCounter <= 0)
             {
-                dashCounter = dashCooldown;
-                movespeed = dashSpeed;
+                StartCoroutine(DashAnimation());
             }
 
             if(dashCounter > 0)
@@ -106,6 +105,7 @@ public class PlayerController : MonoBehaviour
                 if (dashCounter <= dashCooldown - dashLength)
                 {
                     movespeed = normalSpeed;
+                    animator.SetBool("isDash", false);
                 }
             }
         }
@@ -125,6 +125,21 @@ public class PlayerController : MonoBehaviour
         Interact();
 
         animator.SetBool("isAttack", false);
+    }
+
+    IEnumerator DashAnimation()
+    {
+        Debug.Log("hi");
+        animator.SetBool("isDash", true);
+        Debug.Log("hii");
+        // Wait for a short duration (adjust as needed)
+        yield return new WaitForSeconds(0.1f);
+
+        // Call your interaction function here
+        dashCounter = dashCooldown;
+        movespeed = dashSpeed;
+
+        
     }
 
     IEnumerator Move(Vector3 targetPos)
