@@ -10,6 +10,7 @@ public class WeaponScriptableObject : ScriptableObject
     public float speed;
     public float cooldownDuration;
     public int pierce;
+    public bool enable;
 
 
 }
