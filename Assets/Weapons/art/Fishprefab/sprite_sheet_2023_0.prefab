@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed16669e3b644cc9ba8812eb6f19b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: bc575097811754689a63a03aab36c546, type: 2}
   destroyAfterSeconds: 10
   interactableLayer:
     serializedVersion: 2

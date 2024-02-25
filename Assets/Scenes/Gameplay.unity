@@ -269,13 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ba363aa74184616bf2e9f54ede6c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enable: 1
-  pc: {fileID: 0}
-  prefab: {fileID: 5315207414609481368, guid: a23b7cbe2b9ba4587818c40a5a3881db, type: 3}
-  damage: 0
-  speed: 10
-  cooldownDuration: 2
-  pierce: 0
+  data: {fileID: 11400000, guid: 593800384d2214ab083b0d7fa9d8fe45, type: 2}
 --- !u!1 &372140127
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4f219efb5229b48b93e36bec22599c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashSpeed: 0
+  dashCooldown: 1
   movespeed: 5
   isMoving: 0
   isAlive: 1
