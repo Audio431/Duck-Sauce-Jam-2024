@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public float dashSpeed;
+    private float dashLength = .5f;
+    public float dashCooldown = 1;
+    private float dashCounter = 0;
     public float movespeed;
+    private float normalSpeed;
     public bool isMoving;
     public bool isAlive=true;
     public float dmg_max = 20;
@@ -35,6 +40,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        normalSpeed = movespeed;
+        animator.SetFloat("moveX", -1f);
+
         healthbar = Instantiate(healthbar, transform.position, transform.rotation);
         healthbar.transform.parent = transform;
         slider = healthbar.GetComponent<Slider>();
@@ -84,6 +92,21 @@ public class PlayerController : MonoBehaviour
             {
                 SoundFXManager.instance.PlaySoundFXClip(attackClip, transform, volume);
                 StartCoroutine(AttackAnimation());
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && dashCounter <= 0)
+            {
+                dashCounter = dashCooldown;
+                movespeed = dashSpeed;
+            }
+
+            if(dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+                if (dashCounter <= dashCooldown - dashLength)
+                {
+                    movespeed = normalSpeed;
+                }
             }
         }
     }
