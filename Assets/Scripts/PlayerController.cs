@@ -88,6 +88,10 @@ public class PlayerController : MonoBehaviour
                         StartCoroutine(Move(targetPos));
                 }
             }
+            if (Input.GetAxisRaw("Cancel")==1)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+            }
             if (Input.GetKeyDown(KeyCode.F))
             {
                 SoundFXManager.instance.PlaySoundFXClip(attackClip, transform, volume);
